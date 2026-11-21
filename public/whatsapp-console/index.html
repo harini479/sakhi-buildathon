@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakhi Clinical Companion</title>
+    <meta name="description" content="Multilingual fertility, pregnancy, and post-care clinical companion with zero-trust symptom triage, hospital discovery, and WhatsApp-style test console.">
+    <meta property="og:title" content="Sakhi Clinical Companion">
+    <meta property="og:description" content="Multilingual fertility, pregnancy, and post-care clinical companion with zero-trust symptom triage, hospital discovery, and WhatsApp-style test console.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <!-- Main Container -->
+        <div class="chat-container">
+            
+            <!-- Left Sidebar (Chat List) -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="avatar-sm my-avatar">U</div>
+                    <h2>Chats</h2>
+                    <div class="status-indicator online" title="Online"></div>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="chat-search-input" placeholder="Search or start new chat">
+                    </div>
+                </div>
+
+                <div class="chat-list">
+                    <!-- Groups -->
+                    <div class="list-section">GROUPS</div>
+                    <div class="chat-list-item" onclick="switchChat('group_all', 'All Patients Group', '👥', 'Company Group', this)">
+                        <div class="avatar group-avatar">👥</div>
+                        <div class="chat-info">
+                            <h4>All Patients Group</h4>
+                            <p>Company Group</p>
+                        </div>
+                    </div>
+
+                    <!-- Contacts -->
+                    <div class="list-section">PATIENTS</div>
+
+                    <div class="chat-list-item active" onclick="switchChat('+911111111111', 'Venkatesh', 'V', 'Pre-Care / General Inquiry', this)">
+                        <div class="avatar bg-blue">V</div>
+                        <div class="chat-info">
+                            <h4>Venkatesh</h4>
+                            <p>Pre-Care (Telugu)</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+912222222222', 'Suresh', 'S', 'Pre-Care / Consultation', this)">
+                        <div class="avatar bg-purple">S</div>
+                        <div class="chat-info">
+                            <h4>Suresh</h4>
+                            <p>Pre-Care (Escalated)</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+913333333333', 'Ramesh', 'R', 'Post-Care / Medication', this)">
+                        <div class="avatar bg-pink">R</div>
+                        <div class="chat-info">
+                            <h4>Ramesh</h4>
+                            <p>Post-Care (Escalated)</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+914444444444', 'Mahesh', 'M', 'Post-Care / Follow-up', this)">
+                        <div class="avatar bg-green">M</div>
+                        <div class="chat-info">
+                            <h4>Mahesh</h4>
+                            <p>Post-Care (Telugu)</p>
+                        </div>
+                    </div>
+
+                    <div class="list-section">NEW TEST PATIENTS (POST-CARE)</div>
+
+                    <div class="chat-list-item" onclick="switchChat('+918888888881', 'Rohan Verma', 'R', 'General Medicine - Initial Assessment', this)">
+                        <div class="avatar bg-blue">R</div>
+                        <div class="chat-info">
+                            <h4>Rohan Verma</h4>
+                            <p>General Medicine · Initial Assessment</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+918888888882', 'Ananya Reddy', 'A', 'Fertility - IVF Stimulation Phase', this)">
+                        <div class="avatar bg-purple">A</div>
+                        <div class="chat-info">
+                            <h4>Ananya Reddy</h4>
+                            <p>IVF Stimulation Phase</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+918888888883', 'Priya Sharma', 'P', 'Fertility - IUI Cycle', this)">
+                        <div class="avatar bg-pink">P</div>
+                        <div class="chat-info">
+                            <h4>Priya Sharma</h4>
+                            <p>IUI Cycle</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+918888888884', 'Kavya Nair', 'K', 'Obstetrics - 1st Trimester', this)">
+                        <div class="avatar bg-green">K</div>
+                        <div class="chat-info">
+                            <h4>Kavya Nair</h4>
+                            <p>First Trimester</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" onclick="switchChat('+918888888885', 'Lakshmi Devi', 'L', 'Pregnancy - Trimester 1', this)">
+                        <div class="avatar bg-orange">L</div>
+                        <div class="chat-info">
+                            <h4>Lakshmi Devi</h4>
+                            <p>Pregnancy · Trimester 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Chat Area -->
+            <div class="chat-area" id="chat-area">
+                <!-- Header -->
+                <header class="chat-header">
+                    <div class="header-left">
+                        <button class="back-btn" id="back-btn" style="display: none;">
+                            <i data-lucide="arrow-left"></i>
+                        </button>
+                        <div class="avatar" id="active-chat-avatar">
+                            <div class="avatar bg-blue" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:18px; font-weight:bold;">V</div>
+                        </div>
+                        <div class="header-info">
+                            <h2 id="active-chat-name">Venkatesh</h2>
+                            <span id="active-chat-desc">Pre-Care / General Inquiry</span>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <button class="menu-btn" title="Group Settings" id="group-settings-btn" style="display:none;"><i data-lucide="settings"></i></button>
+                        <button class="menu-btn"><i data-lucide="more-vertical"></i></button>
+                    </div>
+                </header>
+
+                <!-- Message Stream -->
+                <div class="message-stream" id="message-stream">
+                    <!-- Encryption Notice -->
+                    <div class="encryption-banner-container">
+                        <div class="encryption-banner">
+                            <i data-lucide="lock" style="width: 12px; height: 12px; margin-right: 4px;"></i> 
+                            Messages and calls are end-to-end encrypted. No one outside of this chat, not even Medcy, can read or listen to them.
+                        </div>
+                    </div>
+                    <!-- Dynamic Messages will be injected here -->
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <div class="bubble bot">
+                        <div class="dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <footer class="chat-input-area">
+                    <button class="attach-btn" title="Attach (Max 5MB)"><i data-lucide="paperclip"></i></button>
+                    <input type="text" id="message-input" placeholder="Type a message" autocomplete="off" autofocus>
+                    <button id="send-btn" class="send-btn">
+                        <i data-lucide="send"></i>
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu for Message Deletion -->
+    <div id="context-menu" class="context-menu" style="display: none;">
+        <div class="context-menu-item" id="btn-delete-for-me">
+            <i data-lucide="trash-2"></i> Delete for me
+        </div>
+        <div class="context-menu-item" id="btn-delete-for-everyone">
+            <i data-lucide="trash-2"></i> Delete for everyone
+        </div>
+    </div>
+
+    <!-- Group Settings Modal -->
+    <div id="group-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Group Settings</h2>
+                <button id="close-modal-btn" style="background:none; border:none; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 15px; font-size:14px; color:#666;">Change group name, view participants, kick members, and add new members.</p>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" value="All Patients Group" style="flex:1; padding:8px; border:1px solid #ccc; border-radius:4px;" />
+                    <button style="background:#00a884; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

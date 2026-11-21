@@ -1,0 +1,52 @@
+# Environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Node modules (for test_ui)
+node_modules/
+test_ui/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs and databases
+logs/
+*.log
+*.sqlite3
+db.sqlite3
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files to ignore
+test_lang_flow.py
+test_response_builder.py
+test_tokenization.py
+test_verify_lang.py
+
+# Local setups & tests
+loadtest/
+sql/

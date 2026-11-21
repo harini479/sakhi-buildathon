@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  sakhi-backend:
+    build: .
+    container_name: sakhi-whatsapp-backend
+    # HOST NETWORKING: container shares host network stack.
+    # localhost:3000 (Node chatbot) is reachable directly from inside this container.
+    network_mode: "host"
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - ./logs:/app/logs

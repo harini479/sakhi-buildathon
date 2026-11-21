@@ -1,0 +1,8 @@
+{
+  "name": "Sakhi Clinical Companion",
+  "description": "Multilingual fertility, pregnancy, and post-care clinical companion with zero-trust symptom triage, hospital discovery, and WhatsApp-style test console.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
